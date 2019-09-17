@@ -37,7 +37,7 @@
             for(var c = 0; c < brickColoumnCount; c++){
                 bricks[c] = [];
                 for(var r = 0; r < brickRowCount; r++){
-                    bricks[c][r] = {x: 0, y : 0, status: 1};
+                    bricks[c][r] = {x: 0, y : 0, status: 2};
                 }
             }
             document.addEventListener("keydown",keyDownHandler,false);
@@ -50,10 +50,17 @@
                         var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
                         bricks[c][r].x = brickX;
                         bricks[c][r].y = brickY;
-                        if(bricks[c][r].status == 1){
+                        if(bricks[c][r].status == 2){
                             ctx.beginPath();
                             ctx.rect(brickX,brickY,brickWidth,brickHeight);
                             ctx.fillStyle = "#0095DD";
+                            ctx.fill();
+                            ctx.closePath();
+                        }
+                        else if(bricks[c][r].status == 1){
+                            ctx.beginPath();
+                            ctx.rect(brickX,brickY,brickWidth,brickHeight);
+                            ctx.fillStyle = "red";
                             ctx.fill();
                             ctx.closePath();
                         }
@@ -92,11 +99,11 @@
                 for(var c = 0; c < brickColoumnCount; c++){
                     for(var r = 0; r < brickRowCount; r++){
                         var b = bricks[c][r];
-                        if(bricks[c][r].status == 1 && x >= b.x && x <= b.x + brickWidth && y >= b.y && y <= b.y + brickHeight){
+                        if(bricks[c][r].status != 0 && x >= b.x && x <= b.x + brickWidth && y >= b.y && y <= b.y + brickHeight){
                             dy = -dy;
-                            bricks[c][r].status = 0;
-                            score++;
-                            if(score == brickColoumnCount*brickRowCount){
+                            bricks[c][r].status = bricks[c][r].status - 1;
+                            if(bricks[c][r].status == 0)score++;
+                            if(score == brickColoumnCount*brickRowCount*2){
                                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                                 alert("CONGRATS! YOU WON!");
                                 document.location.reload();
