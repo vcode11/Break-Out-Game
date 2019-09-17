@@ -81,7 +81,7 @@
             function drawScore() {
                 ctx.font = "20px Arial";
                 ctx.fillStyle = "aqua-blue";
-                ctx.fillText("Score: "+score, 8, 20);
+                ctx.fillText("Score: "+score + "/15", 8, 20);
             }
             function drawLives() {
                     ctx.font = "22px Arial";
@@ -146,20 +146,20 @@
                         else{
                             x = canvas.width/2;
                             y = canvas.height-30;
-                            dx = 4;
-                            dy = -4;
+                            dx = -4;
+                            dy = 4;
                             paddleX = (canvas.width-paddleWidth)/2;
                         }
                     }
                 }
                 if(rightPressed) {
-                    paddleX+=7;
+                    paddleX+=8;
                     if(paddleX + paddleWidth > canvas.width){
                         paddleX = canvas.width - paddleWidth;
                     }
                 }
                 else if(leftPressed) {
-                    paddleX-=7;
+                    paddleX-=8;
                     if(paddleX < 0){
                         paddleX = 0;
                     }
