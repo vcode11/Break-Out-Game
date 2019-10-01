@@ -7,3 +7,5 @@ A simple bricks game made using JS and html5 canvas element.<br>
 <hr>
 
  PRs are welcome please raise issues before making major changes.
+<h1>hello vishal sir!!</h1><br>
+<h2>how are you?</h2>
